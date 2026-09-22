@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "demo"      # Project title
-  author:       "Me"      # Your name
+  title:        "8 Bit Counter"      # Project title
+  author:       "Aaron Snider"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "Demo project :P"      # One line description of what your project does
+  description:  "8 bit programmable binary counter with asynchronouse reset synchronous load and tri-state outputs."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -11,7 +11,7 @@ project:
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "aarons_first_counter"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
@@ -23,28 +23,28 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "io_0"
-  ui[1]: ""
-  ui[2]: ""
-  ui[3]: ""
-  ui[4]: ""
-  ui[5]: ""
-  ui[6]: ""
-  ui[7]: ""
+  ui[0]: "input_reg[0]"
+  ui[1]: "input_reg[1]"
+  ui[2]: "input_reg[2]"
+  ui[3]: "input_reg[3]"
+  ui[4]: "input_reg[4]"
+  ui[5]: "input_reg[5]"
+  ui[6]: "input_reg[6]"
+  ui[7]: "input_reg[7]"
 
   # Outputs
-  uo[0]: ""
-  uo[1]: "io_1"
-  uo[2]: ""
-  uo[3]: ""
-  uo[4]: ""
-  uo[5]: ""
-  uo[6]: ""
-  uo[7]: ""
+  uo[0]: "count_output[0]"
+  uo[1]: "count_output[1]"
+  uo[2]: "count_output[2]"
+  uo[3]: "count_output[3]"
+  uo[4]: "count_output[4]"
+  uo[5]: "count_output[5]"
+  uo[6]: "count_output[6]"
+  uo[7]: "count_output[7]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
+  uio[0]: "load_input"
+  uio[1]: "output_enable"
   uio[2]: ""
   uio[3]: ""
   uio[4]: ""

@@ -5,7 +5,7 @@
 
 `default_nettype none
 
-module tt_um_example (
+module aarons_first_counter (
     input  wire [7:0] ui_in,    // Dedicated inputs
     output wire [7:0] uo_out,   // Dedicated outputs
     input  wire [7:0] uio_in,   // IOs: Input path
@@ -16,12 +16,33 @@ module tt_um_example (
     input  wire       rst_n     // reset_n - low to reset
 );
 
-  // All output pins must be assigned. If not used, assign to 0.
-  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
-  assign uio_out = 0;
-  assign uio_oe  = 0;
+  // Signals to match counter implementation
+  wire [7:0] input_reg     = ui_in;
+  wire       load_input    = uio_in[0];
+  wire       output_enable = uio_in[1];
 
-  // List all unused inputs to prevent warnings
-  wire _unused = &{ena, clk, rst_n, 1'b0};
+  // Counter was designed with active high logic
+  wire rst = ~rst_n;
+
+  // Internal counter register
+  reg [7:0] count_8;
+
+  // Reset, counting, and load logic
+  always @(posedge clk or posedge rst) begin
+    if (rst)
+      count_8 <= 8'b0;
+    else if (load_input)
+      count_8 <= input_reg;
+    else
+      count_8 <= count_8 + 1;
+  end
+
+  // Output logic
+  assign uo_out = (output_enable) ? count_8 : 8'bz;
+
+  // Unused 
+  assign uio_out = 8'b0;
+  assign uio_oe  = 8'b0;
+  wire _unused = &{ena, uio_in[7:2], 1'b0};
 
 endmodule
