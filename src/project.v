@@ -38,7 +38,7 @@ module tt_um_8bit_counter (
   end
 
   // Output logic
-  assign uo_out = (output_enable) ? count_8 : 8'bz;
+  assign uo_out = (output_enable) ? count_8 : 8'b0;
 
   // Unused 
   assign uio_out = 8'b0;
