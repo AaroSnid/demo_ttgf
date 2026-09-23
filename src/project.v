@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2024 Your Name
+ * Copyright (c) 2026 Aaron Snider
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -17,19 +17,19 @@ module tt_um_8bit_counter (
 );
 
   // Signals to match counter implementation
-  wire [7:0] input_reg     = ui_in;
-  wire       load_input    = uio_in[0];
-  wire       output_enable = uio_in[1];
-
-  // Counter was designed with active high logic
-  wire rst = ~rst_n;
+  wire [7:0] input_reg     = uio_in;
+  wire       load_input    = ui_in[0];
+  wire       output_enable = ui_in[1];
 
   // Internal counter register
   reg [7:0] count_8;
 
+  // Enable loading through uio_in
+  assign uio_oe  = (output_enable && !load_input) ? 8'b11111111 : 8'b00000000;
+
   // Reset, counting, and load logic
-  always @(posedge clk or posedge rst) begin
-    if (rst)
+  always @(posedge clk or negedge rst_n) begin
+    if (!rst_n)
       count_8 <= 8'b0;
     else if (load_input)
       count_8 <= input_reg;
@@ -38,11 +38,10 @@ module tt_um_8bit_counter (
   end
 
   // Output logic
-  assign uo_out = (output_enable) ? count_8 : 8'b0;
+  assign uio_out = (output_enable) ? count_8 : 8'b0;
 
   // Unused 
-  assign uio_out = 8'b0;
-  assign uio_oe  = 8'b0;
-  wire _unused = &{ena, uio_in[7:2], 1'b0};
+  assign uo_out = 8'b0;
+  wire _unused = &{ena, ui_in[7:2], 1'b0};
 
 endmodule

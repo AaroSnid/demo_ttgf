@@ -2,10 +2,10 @@
 project:
   title:        "8 Bit Counter"      # Project title
   author:       "Aaron Snider"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "8 bit programmable binary counter with asynchronouse reset synchronous load and tri-state outputs."      # One line description of what your project does
-  language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  discord:      ""      # Your discord username
+  description:  "8 bit programmable binary counter with asynchronous reset, synchronous load, and tri-state bidirectional outputs."      # Description[cite: 2]
+  language:     "Verilog" #[cite: 2]
+  clock_hz:     10000000       # Clock frequency set to 10 MHz[cite: 2]
 
   # How many tiles your design occupies? A single tile is about 340x160 uM.
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 3x4 or 4x4
@@ -23,34 +23,34 @@ project:
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: "input_reg[0]"
-  ui[1]: "input_reg[1]"
-  ui[2]: "input_reg[2]"
-  ui[3]: "input_reg[3]"
-  ui[4]: "input_reg[4]"
-  ui[5]: "input_reg[5]"
-  ui[6]: "input_reg[6]"
-  ui[7]: "input_reg[7]"
+  ui[0]: "load_input"
+  ui[1]: "output_enable"
+  ui[2]: ""
+  ui[3]: ""
+  ui[4]: ""
+  ui[5]: ""
+  ui[6]: ""
+  ui[7]: ""
 
   # Outputs
-  uo[0]: "count_output[0]"
-  uo[1]: "count_output[1]"
-  uo[2]: "count_output[2]"
-  uo[3]: "count_output[3]"
-  uo[4]: "count_output[4]"
-  uo[5]: "count_output[5]"
-  uo[6]: "count_output[6]"
-  uo[7]: "count_output[7]"
+  uo[0]: ""
+  uo[1]: ""
+  uo[2]: ""
+  uo[3]: ""
+  uo[4]: ""
+  uo[5]: ""
+  uo[6]: ""
+  uo[7]: ""
 
-  # Bidirectional pins
-  uio[0]: "load_input"
-  uio[1]: "output_enable"
-  uio[2]: ""
-  uio[3]: ""
-  uio[4]: ""
-  uio[5]: ""
-  uio[6]: ""
-  uio[7]: ""
+  # Bidirectional Pins
+  uio[0]: "io_data[0]"
+  uio[1]: "io_data[1]"
+  uio[2]: "io_data[2]"
+  uio[3]: "io_data[3]"
+  uio[4]: "io_data[4]"
+  uio[5]: "io_data[5]"
+  uio[6]: "io_data[6]"
+  uio[7]: "io_data[7]"
 
 # Do not change!
 yaml_version: 6
